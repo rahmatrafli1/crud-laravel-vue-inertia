@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('create');
-});
+Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
+Route::get('/create', [CustomerController::class, 'create'])->name('customers.create');
+Route::post('/store', [CustomerController::class, 'store'])->name('customers.store');
+Route::get('/{id}', [CustomerController::class, 'show']);
