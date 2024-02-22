@@ -1,4 +1,5 @@
 <template>
+  <Head title="Show Data" />
   <div class="container mt-3">
     <h3>{{ customer.name }}</h3>
     <p>Email Address: {{ customer.email }}</p>
@@ -8,7 +9,7 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, Head } from "@inertiajs/vue3";
 </script>
 <script>
 export default {
