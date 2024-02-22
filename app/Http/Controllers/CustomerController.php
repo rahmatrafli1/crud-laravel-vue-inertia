@@ -29,10 +29,8 @@ class CustomerController extends Controller
         return Redirect::route('customers.index')->with('success', 'Create Customer successfully');
     }
 
-    public function show($id)
+    public function show(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-
         return Inertia::render('show', ['customer' => $customer]);
     }
 }

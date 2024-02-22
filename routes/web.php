@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
 Route::get('/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/store', [CustomerController::class, 'store'])->name('customers.store');
-Route::get('/{id}', [CustomerController::class, 'show']);
+Route::get('/{customer}', [CustomerController::class, 'show']);
