@@ -26,7 +26,7 @@ class CustomerController extends Controller
 
         Customer::create($validate);
 
-        return Redirect::route('customers.index')->with('success', 'Create Customer successfully');
+        return Redirect::route('customers.index')->with('message', 'Create Customer successfully');
     }
 
     public function show(Customer $customer)
