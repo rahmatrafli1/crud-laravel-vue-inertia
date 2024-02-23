@@ -1,6 +1,7 @@
 <script setup>
 import { Link, Head } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
+import { router } from "@inertiajs/vue3";
 </script>
 <script>
 export default {
@@ -28,9 +29,34 @@ export default {
         });
       }
     },
+
+    destroy(id) {
+      Swal.fire({
+        title: "Delete Confirm",
+        text: "Do you want to delete this?",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: "Yes",
+        denyButtonText: "No",
+        confirmButtonColor: "blue",
+      }).then((result) => {
+        /* Read more about isConfirmed */
+        if (result.isConfirmed) {
+          router.delete("/" + id);
+        }
+      });
+    },
   },
 
   created() {
+    this.showAlert();
+  },
+
+  unmounted() {
+    this.showAlert();
+  },
+
+  updated() {
     this.showAlert();
   },
 };
@@ -55,8 +81,19 @@ export default {
           <td>
             <Link
               :href="`/${customer.id}`"
-              class="text-info text-decoration-none"
+              class="text-info text-decoration-none me-2 mt-2"
               >Show</Link
+            >
+            <Link
+              :href="`/edit/${customer.id}`"
+              class="text-warning text-decoration-none me-2 mt-2"
+              >Edit</Link
+            >
+            <Link
+              href="#"
+              @click.prevent="destroy(customer.id)"
+              class="text-danger text-decoration-none"
+              >Delete</Link
             >
           </td>
         </tr>
